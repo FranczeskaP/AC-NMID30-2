@@ -173,18 +173,17 @@ static int32_t convertReceivedData(uint16_t high, uint16_t low)
 
 }
 
-static uint32_t convertToInt(uint32_t* arr, uint32_t low, uint32_t high)
+static uint32_t convertToInt(uint32_t data, uint32_t low, uint32_t high)
 {
 	uint32_t f = 0, i;
 	for (i = high; i >= low; i--) {
-		f = f + arr[i] * pow(2, high - i);
+		f = f + ((data >> i) & 0x1) * pow(2, high - i);
 	}
 	return f;
 }
 
 static void toArray(uint16_t high, uint16_t low, uint32_t *arr)
 {
-    uint32_t x = (high << 16) | low;
     int j = 0;
     for(int i = 31; i >= 0; i--)
     {
@@ -195,11 +194,10 @@ static void toArray(uint16_t high, uint16_t low, uint32_t *arr)
 
 static void decodeData(uint16_t high, uint16_t low)
 {
-    uint32_t valInArr[32];
-	toArray(high, low, valInArr);
-	uint32_t f = convertToInt(valInArr, 9, 31);
+    uint32_t x = (high << 16) | low;
+	uint32_t f = convertToInt(x, 9, 31);
 	var.raw.mantissa = f;
-	f = convertToInt(valInArr, 1, 8);
+	f = convertToInt(x, 1, 8);
 	var.raw.exponent = f;
-	var.raw.sign = valInArr[0];
+	var.raw.sign = ((x >> 31) & 0x01u);
 }
