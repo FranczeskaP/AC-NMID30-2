@@ -43,8 +43,7 @@ static myfloat var;
 static void SchedulerCalled(int signum);
 static void initAcModbus(void);
 static void modbusDeInit(void);
-static uint32_t convertToInt(uint32_t* arr, uint32_t low, uint32_t high);
-static void toArray(uint16_t high, uint16_t low, uint32_t *arr);
+static uint32_t convertToInt(uint32_t data, uint32_t low, uint32_t high);
 static void decodeData(uint16_t high, uint16_t low);
 
 int main()
@@ -159,20 +158,6 @@ static void initAcModbus(void)
     modbus_set_slave(slave, 0u);
 }
 
-static int32_t convertReceivedData(uint16_t high, uint16_t low)
-{
-    uint8_t znak = (high & 0x8000u) >> 15u;
-    uint16_t wykladnik = ((high & 0x7F80u) >> 7u);
-    uint32_t liczba = ((high & 0x7Fu) << 16u) | low | 0x800000;
-    uint32_t czescCalkowita = 0u;
-    uint32_t czescUlamkowa = 0u;
-    if(znak == 0u)
-    {
-        czescCalkowita = liczba >> (24u - (wykladnik + 1u));
-    }
-
-}
-
 static uint32_t convertToInt(uint32_t data, uint32_t low, uint32_t high)
 {
 	uint32_t f = 0, i;
@@ -180,16 +165,6 @@ static uint32_t convertToInt(uint32_t data, uint32_t low, uint32_t high)
 		f = f + ((data >> i) & 0x1) * pow(2, high - i);
 	}
 	return f;
-}
-
-static void toArray(uint16_t high, uint16_t low, uint32_t *arr)
-{
-    int j = 0;
-    for(int i = 31; i >= 0; i--)
-    {
-        arr[i] = (x >> j) & 0x1;
-        j++;
-    }
 }
 
 static void decodeData(uint16_t high, uint16_t low)
