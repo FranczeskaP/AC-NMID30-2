@@ -3,3 +3,4 @@
 Needed libraries:
 * LibModbus
 * CMake
+* PkgConfig
