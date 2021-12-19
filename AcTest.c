@@ -40,29 +40,29 @@ int main()
         exit(1);
     }
 
-    codeData(-2.25, &mapping->tab_registers[0], &mapping->tab_registers[1]);
-    codeData(256.9, &mapping->tab_registers[2], &mapping->tab_registers[3]);
-    codeData(-32.25, &mapping->tab_registers[4], &mapping->tab_registers[5]);
-    codeData(-432.247, &mapping->tab_registers[6], &mapping->tab_registers[7]);
-    codeData(-26.25, &mapping->tab_registers[8], &mapping->tab_registers[9]);
-    codeData(45.8465, &mapping->tab_registers[10], &mapping->tab_registers[11]);
+    codeData(-2.25, &mapping->tab_input_registers[0], &mapping->tab_input_registers[1]);
+    codeData(256.9, &mapping->tab_input_registers[2], &mapping->tab_input_registers[3]);
+    codeData(-32.25, &mapping->tab_input_registers[4], &mapping->tab_input_registers[5]);
+    codeData(-432.247, &mapping->tab_input_registers[6], &mapping->tab_input_registers[7]);
+    codeData(-26.25, &mapping->tab_input_registers[8], &mapping->tab_input_registers[9]);
+    codeData(45.8465, &mapping->tab_input_registers[10], &mapping->tab_input_registers[11]);
 
 
-    codeData(-5.3, &mapping->tab_registers[52], &mapping->tab_registers[53]);
-    codeData(0.345, &mapping->tab_registers[54], &mapping->tab_registers[55]);
-    codeData(34.0, &mapping->tab_registers[56], &mapping->tab_registers[57]);
-    codeData(-78.78, &mapping->tab_registers[58], &mapping->tab_registers[59]);
-    codeData(-146.56, &mapping->tab_registers[60], &mapping->tab_registers[61]);
-    codeData(-2.0, &mapping->tab_registers[62], &mapping->tab_registers[63]);
-    codeData(80.345, &mapping->tab_registers[64], &mapping->tab_registers[65]);
-    codeData(-795.29, &mapping->tab_registers[66], &mapping->tab_registers[67]);
+    codeData(-5.3, &mapping->tab_input_registers[52], &mapping->tab_input_registers[53]);
+    codeData(0.345, &mapping->tab_input_registers[54], &mapping->tab_input_registers[55]);
+    codeData(34.0, &mapping->tab_input_registers[56], &mapping->tab_input_registers[57]);
+    codeData(-78.78, &mapping->tab_input_registers[58], &mapping->tab_input_registers[59]);
+    codeData(-146.56, &mapping->tab_input_registers[60], &mapping->tab_input_registers[61]);
+    codeData(-2.0, &mapping->tab_input_registers[62], &mapping->tab_input_registers[63]);
+    codeData(80.345, &mapping->tab_input_registers[64], &mapping->tab_input_registers[65]);
+    codeData(-795.29, &mapping->tab_input_registers[66], &mapping->tab_input_registers[67]);
 
 
-    codeData(208.22425, &mapping->tab_registers[248], &mapping->tab_registers[249]);
-    codeData(25.2655, &mapping->tab_registers[250], &mapping->tab_registers[251]);
+    codeData(208.22425, &mapping->tab_input_registers[248], &mapping->tab_input_registers[249]);
+    codeData(25.2655, &mapping->tab_input_registers[250], &mapping->tab_input_registers[251]);
 
 
-    codeData(-452.257, &mapping->tab_registers[344], &mapping->tab_registers[345]);
+    codeData(-452.257, &mapping->tab_input_registers[344], &mapping->tab_input_registers[345]);
 
 
     modbus_t *ctx = modbus_new_rtu(DEVICE_NAME, BAUDRATE, PARITY, DATA_BITS, STOP_BITS);
